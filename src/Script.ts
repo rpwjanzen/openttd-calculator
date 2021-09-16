@@ -275,7 +275,7 @@ function recalculateChartData() {
         const totalEnginePower = engine.power.mul(engineCount);
         const totalTe = engine.te.mul(engineCount);
         const dragCoefficient = 20 + 3 * (carCount + engineCount);
-        const maxDays = 60;
+        const maxDays = 25;
         
         const initialSpeed = Speed.KmPerHour(14);
         let currentSpeed = initialSpeed;

@@ -7,8 +7,9 @@ import { Power } from './Power.js';
 import { TractiveEffort } from './TractiveEffort.js';
 import { TrackGauge } from './TrackGauge.js';
 import { Role } from './Role.js';
-import { allEngines } from './Engines.js';
 import { Engine } from './Engine.js';
+
+const allEngines: Engine[] = [];
 
 function convertToDisplayUnits(speedUnits: SpeedUnits, speedsByEngineByDay: Speed[][]): number[][] {
     const results: number[][] = [[]];
@@ -91,7 +92,7 @@ function getEngines() {
     }
 
     // filter out engines from years that are not selected
-    engines = engines.filter(x => x.year >= startYear);
+    engines = engines.filter(x => x.expireYear >= startYear);
     engines = engines.filter(x => x.year <= endYear);
 
     return engines;
@@ -211,6 +212,11 @@ function displayEquilibriumSpeeds(equilibirumSpeeds: {engine:Engine, isSlow: boo
             engineLabel = engine.name;
         }
 
+        if (e.engine.expireYear !== 3000) {
+            engineLabel = engineLabel + ` (${e.engine.year} - ${e.engine.expireYear})`;
+        } else {
+            engineLabel = engineLabel + ` (${e.engine.year}+)`;
+        }
         const nameTextNode = document.createTextNode(engineLabel);
         nameCell.appendChild(nameTextNode);
 
@@ -218,6 +224,97 @@ function displayEquilibriumSpeeds(equilibirumSpeeds: {engine:Engine, isSlow: boo
         const speedTextNode = document.createTextNode(e.speed.toText(speedUnits));
         speedCell.appendChild(speedTextNode);
     }
+}
+
+function loadData() {
+    const req = fetch('./data/timberwolf.csv')
+    .then(response => response.text())
+    .then(data => {
+        const lines = data.split('\n');
+        for (let i = 1; i < lines.length; i++) {
+            const fields = [];
+            const line = lines[i];
+
+            let mode = "unquoted";
+            let currentField = "";
+            for(let ci = 0; ci < line.length; ci++) {
+                if (mode === "quoted") {
+                    if (line[ci] === '"') {
+                        mode = "unquoted";
+                    } else {
+                        currentField = currentField + line[ci];
+                    }
+                } else if (mode === "unquoted") {
+                    if (line[ci] === '"') {
+                        mode = "quoted";
+                    } else if (line[ci] === ',') {
+                        fields.push(currentField);
+                        currentField = "";
+                    } else {
+                        currentField = currentField + line[ci];
+                    }
+                }
+            }
+
+            const name = fields[0];
+            const fieldRailType = fields[5];
+            let gauge;
+            switch (fieldRailType) {
+                case 'RAIL':
+                    gauge = TrackGauge.standard
+                    break;
+                case 'PLATEWAY':
+                    gauge = TrackGauge.plateway;
+                    break;
+                case 'FOURTH_RAIL':
+                    gauge = TrackGauge.fourthRail;
+                    break;
+                case 'ELRL':
+                    gauge = TrackGauge.electric;
+                    break;
+                case 'THIRD_RAIL':
+                    gauge = TrackGauge.thirdRail;
+                    break;
+                case 'DUAL_POWER':
+                    gauge = TrackGauge.dual;
+                    break;
+                default:
+                    throw new Error('Unknown rail type: ' + fieldRailType);
+            }
+            const year = parseInt(fields[6]);
+            const powerInHp = parseInt(fields[10]);
+            const weightInTons = parseInt(fields[19]);
+            const teInKn = parseInt(fields[22]);
+            const speedInMph = parseInt(fields[24]);
+            const length = parseInt(fields[32]) / 16;
+            const lifespan = parseInt(fields[45]);
+            
+
+            if (teInKn > 0) {
+                let expireYear = 3000;
+                if (!Number.isNaN(lifespan)) {
+                    expireYear = year + lifespan;
+                }
+
+                const engine = {
+                    name: name,
+                    mass: Mass.Ton(weightInTons),
+                    maxSpeed: Speed.MilesPerHour(speedInMph),
+                    power: Power.Hp(powerInHp),
+                    te: TractiveEffort.Kn(teInKn),
+                    length: length,
+                    gauge: gauge,
+                    role: Role.GeneralPurpose,
+                    year: year,
+                    expireYear: expireYear,
+                };
+                allEngines.push(engine);
+            } else if (length > 0) {
+                // console.log('' + year + ':' + lifespan);
+            }
+        }
+    })
+    .then(() => recalculateChartDataRequested());
 }
 
 let requestId = 0;
@@ -240,12 +337,15 @@ let legend: Chartist.Plugin;
 function recalculateChartData() {
     const engines = getEngines();
     if (engines.length === 0) {
+        
         document.querySelector<HTMLDivElement>('#all-trains-filtered')!.style.display = "block";
         document.querySelector<HTMLDivElement>('#chart')!.style.display = "none";
+        document.querySelector<HTMLDivElement>('#engine-speeds-table')!.style.display = "none";
         return;
     } else {
         document.querySelector<HTMLDivElement>('#all-trains-filtered')!.style.display = "none";
         document.querySelector<HTMLDivElement>('#chart')!.style.display = "block";
+        document.querySelector<HTMLDivElement>('#engine-speeds-table')!.style.display = "block";
     }
     const equilibriumSpeeds = calculateEquilibriumSpeeds(engines);
     equilibriumSpeeds.length = Math.min(15, equilibriumSpeeds.length);
@@ -582,6 +682,7 @@ function getEndYear(): number {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    loadData();
     recalculateChartDataRequested();
 });
 
@@ -599,15 +700,6 @@ const elementIds = [
 for (const elementId of elementIds) {
     document.querySelector(elementId)!.addEventListener('change', () => recalculateChartDataRequested());    
 }
-
-// function updateStartYear(value: number) {
-//     const startYear = document.querySelector<HTMLInputElement>('#startYear')!.value;
-//     document.querySelector<HTMLInputElement>('#startYearRange')!.value = startYear;
-
-//     const endYear = Math.max(getEndYear(), parseInt(startYear));
-//     document.querySelector<HTMLInputElement>('#endYear')!.value = endYear.toFixed(0);
-//     document.querySelector<HTMLInputElement>('#endYearRange')!.value = endYear.toFixed(0);
-// }
 
 document.querySelector<HTMLInputElement>('#startYear')!.addEventListener('change', () => {
     const startYear = document.querySelector<HTMLInputElement>('#startYear')!.value;

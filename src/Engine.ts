@@ -15,4 +15,5 @@ export interface Engine {
     gauge: TrackGauge;
     role: Role;
     year: number;
+    expireYear: number;
 }

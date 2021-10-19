@@ -91,7 +91,7 @@ function getEngines() {
     }
 
     // filter out engines from years that are not selected
-    engines = engines.filter(x => x.year >= startYear);
+    engines = engines.filter(x => x.expireYear >= startYear);
     engines = engines.filter(x => x.year <= endYear);
 
     return engines;

@@ -46,7 +46,9 @@ function getEngines() {
                         Role.Freight,
                         Role.FreightJoker,
                         Role.HeavyFreight,
+                        Role.SuperHeavyFreight,
                         Role.HeavyFreightJoker,
+                        Role.SuperHeavyFreightJoker,
                     );
                     break;
                 case 'General Purpose / Express':
@@ -55,7 +57,9 @@ function getEngines() {
                         Role.GeneralPurposeExpress,
                         Role.GeneralPurposeExpressJoker,
                         Role.HeavyGeneralPurposeExpress,
+                        Role.SuperHeavyGeneralPurposeExpress,
                         Role.HeavyGeneralPurposeExpressJoker,
+                        Role.SuperHeavyGeneralPurposeExpressJoker,
                     );
                     break;
                 case 'Railcars / Multiple-Unit Trains':

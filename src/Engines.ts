@@ -373,7 +373,34 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(218),
         length: 0.625,
-        expireYear: 1954,
+        expireYear: 1960,
+    },
+    {
+        name: "Tenacious (Diesel)",
+        role: Role.HeavyGeneralPurposeExpressJoker,
+        year: 1960,
+        maxSpeed: Speed.MilesPerHour(105),
+        power: Power.Hp(2150),
+        mass: Mass.Tonne(80),
+        gauge: TrackGauge.standard,
+        te: TractiveEffort.Kn(0),
+        length: 0.5,
+        expireYear: 1986,
+    },
+
+
+
+    {
+        name: "2-6-2 Arrow (Steam)",
+        role: Role.HeavyGeneralPurposeExpressJoker,
+        year: 1934,
+        maxSpeed: Speed.MilesPerHour(90),
+        power: Power.Hp(1900),
+        mass: Mass.Tonne(140),
+        gauge: TrackGauge.standard,
+        te: TractiveEffort.Kn(383),
+        length: 0.625,
+        expireYear: 1962,
     },
     {
         name: "Intrepid (Diesel)",
@@ -462,12 +489,12 @@ export const allEngines: Engine[] = [
     },
 
     {
-        name: "2-6-2 Streamer (Steam)",
+        name: "4-6-4 Streamer (Steam)",
         role: Role.HeavyGeneralPurposeExpressJoker,
         year: 1934,
         maxSpeed: Speed.MilesPerHour(90),
-        power: Power.Hp(1850),
-        mass: Mass.Tonne(121),
+        power: Power.Hp(2200),
+        mass: Mass.Tonne(150),
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(213),
         length: 0.625,
@@ -488,7 +515,7 @@ export const allEngines: Engine[] = [
 
     {
         name: "Hurly Burly (Electric)",
-        role: Role.HeavyGeneralPurposeExpress,
+        role: Role.SuperHeavyGeneralPurposeExpress,
         year: 1905,
         maxSpeed: Speed.MilesPerHour(75),
         power: Power.Hp(1800),
@@ -500,7 +527,7 @@ export const allEngines: Engine[] = [
     },
     {
         name: "Moor Gallop (Electric)",
-        role: Role.HeavyGeneralPurposeExpress,
+        role: Role.SuperHeavyGeneralPurposeExpress,
         year: 1935,
         maxSpeed: Speed.MilesPerHour(90),
         power: Power.Hp(2400),
@@ -512,7 +539,7 @@ export const allEngines: Engine[] = [
     },
     {
         name: "Roarer (Electric)",
-        role: Role.HeavyGeneralPurposeExpress,
+        role: Role.SuperHeavyGeneralPurposeExpress,
         year: 1963,
         maxSpeed: Speed.MilesPerHour(105),
         power: Power.Hp(3000),
@@ -524,7 +551,7 @@ export const allEngines: Engine[] = [
     },
     {
         name: "Fury (Electric)",
-        role: Role.HeavyGeneralPurposeExpress,
+        role: Role.SuperHeavyGeneralPurposeExpress,
         year: 1991,
         maxSpeed: Speed.MilesPerHour(115),
         power: Power.Hp(3600),
@@ -536,7 +563,7 @@ export const allEngines: Engine[] = [
     },
     {
         name: "Hector (Electric)",
-        role: Role.HeavyGeneralPurposeExpress,
+        role: Role.SuperHeavyGeneralPurposeExpress,
         year: 2021,
         maxSpeed: Speed.MilesPerHour(125),
         power: Power.Hp(4040),
@@ -548,8 +575,47 @@ export const allEngines: Engine[] = [
     },
 
     {
+        name: "Zebedee (Electric)",
+        role: Role.SuperHeavyGeneralPurposeExpressJoker,
+        year: 1969,
+        maxSpeed: Speed.MilesPerHour(105),
+        power: Power.Hp(4000),
+        mass: Mass.Tonne(82),
+        gauge: TrackGauge.electric,
+        te: TractiveEffort.Kn(0),
+        length: 0.5,
+        expireYear: 1992,
+    },
+    {
+        name: "Screamer (Electric)",
+        role: Role.SuperHeavyGeneralPurposeExpressJoker,
+        year: 1992,
+        maxSpeed: Speed.MilesPerHour(115),
+        power: Power.Hp(4800),
+        mass: Mass.Tonne(85),
+        gauge: TrackGauge.electric,
+        te: TractiveEffort.Kn(0),
+        length: 0.5,
+        expireYear: 2023,
+    },
+    {
+        name: "Numbus (Electric)",
+        role: Role.SuperHeavyGeneralPurposeExpressJoker,
+        year: 2023,
+        maxSpeed: Speed.MilesPerHour(125),
+        power: Power.Hp(5400),
+        mass: Mass.Tonne(85),
+        gauge: TrackGauge.electric,
+        te: TractiveEffort.Kn(0),
+        length: 0.5,
+        expireYear: 3000,
+    },
+
+
+
+    {
         name: "Avenger (Electric)",
-        role: Role.HeavyGeneralPurposeExpress,
+        role: Role.SuperHeavyGeneralPurposeExpress,
         year: 1988,
         maxSpeed: Speed.MilesPerHour(115),
         power: Power.Hp(5800),
@@ -561,7 +627,7 @@ export const allEngines: Engine[] = [
     },
     {
         name: "Sizzler (Electric)",
-        role: Role.HeavyGeneralPurposeExpress,
+        role: Role.SuperHeavyGeneralPurposeExpress,
         year: 2022,
         maxSpeed: Speed.MilesPerHour(125),
         power: Power.Hp(6600),
@@ -932,7 +998,7 @@ export const allEngines: Engine[] = [
 
     {
         name: "Cheddar Valley (Diesel)",
-        role: Role.HeavyFreight,
+        role: Role.SuperHeavyFreight,
         year: 1993,
         maxSpeed: Speed.MilesPerHour(87),
         power: Power.Hp(4050),
@@ -944,7 +1010,7 @@ export const allEngines: Engine[] = [
     },
     {
         name: "Highlander (Diesel)",
-        role: Role.HeavyFreight,
+        role: Role.SuperHeavyFreight,
         year: 2019,
         maxSpeed: Speed.MilesPerHour(87),
         power: Power.Hp(4550),
@@ -957,7 +1023,7 @@ export const allEngines: Engine[] = [
 
     {
         name: "Stentor (Diesel)",
-        role: Role.HeavyFreightJoker,
+        role: Role.SuperHeavyFreightJoker,
         year: 1993,
         maxSpeed: Speed.MilesPerHour(87),
         power: Power.Hp(4050),
@@ -976,13 +1042,13 @@ export const allEngines: Engine[] = [
         te: TractiveEffort.Kn(507),
         length: 0.5,
         gauge: TrackGauge.standard,
-        role: Role.HeavyFreightJoker,
+        role: Role.SuperHeavyFreightJoker,
         expireYear: 3000,
     },
 
     {
         name: "Flindermouse (Electric)",
-        role: Role.HeavyFreight,
+        role: Role.SuperHeavyFreight,
         year: 1907,
         maxSpeed: Speed.MilesPerHour(60),
         power: Power.Hp(2500),
@@ -994,7 +1060,7 @@ export const allEngines: Engine[] = [
     },
     {
         name: "Peasweep (Electric)",
-        role: Role.HeavyFreight,
+        role: Role.SuperHeavyFreight,
         year: 1947,
         maxSpeed: Speed.MilesPerHour(75),
         power: Power.Hp(3700),
@@ -1006,7 +1072,7 @@ export const allEngines: Engine[] = [
     },
     {
         name: "Flanders Storm (Electric)",
-        role: Role.HeavyFreight,
+        role: Role.SuperHeavyFreight,
         year: 1987,
         maxSpeed: Speed.MilesPerHour(87),
         power: Power.Hp(5800),
@@ -1018,7 +1084,7 @@ export const allEngines: Engine[] = [
     },
     {
         name: "Triton (Electric)",
-        role: Role.HeavyFreight,
+        role: Role.SuperHeavyFreight,
         year: 2024,
         maxSpeed: Speed.MilesPerHour(87),
         power: Power.Hp(7200),

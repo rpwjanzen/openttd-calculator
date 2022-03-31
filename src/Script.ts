@@ -269,6 +269,7 @@ function recalculateChartData() {
     let topSpeed = Speed.KmPerHour(0);
     const totalTrainMasses = [];
     for(const engine of engines) {
+        topSpeed = Speed.max(engine.maxSpeed, topSpeed);
         const engineLength = engine.length;
         
         const totalEngineLength = engineCount * engineLength;
@@ -303,7 +304,7 @@ function recalculateChartData() {
 
             speedsByDay.push(nextSpeed);
             currentSpeed = nextSpeed;
-            topSpeed = Speed.max(currentSpeed, topSpeed);
+            // topSpeed = Speed.max(currentSpeed, topSpeed);
         }
 
         speedsByEngineByDay.push(speedsByDay);

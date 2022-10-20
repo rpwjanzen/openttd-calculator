@@ -282,7 +282,8 @@ function recalculateChartData() {
         const dragCoefficient = 20 + 3 * (carCount + engineCount);
         const maxDays = 25;
         
-        const initialSpeed = Speed.KmPerHour(14);
+        const initialSpeed = Speed.KmPerHour(2);
+        // const initialSpeed = Speed.KmPerHour(14);
         let currentSpeed = initialSpeed;
         const speedsByDay = [initialSpeed];
         let subspeed = 0;
@@ -302,6 +303,9 @@ function recalculateChartData() {
                 subspeed = s;
             }
 
+            if (Speed.Zero.greaterThan(nextSpeed)) {
+                nextSpeed = Speed.Zero;
+            }
             speedsByDay.push(nextSpeed);
             currentSpeed = nextSpeed;
             // topSpeed = Speed.max(currentSpeed, topSpeed);
@@ -529,7 +533,6 @@ function calculateEquilibriumSpeed(totalTrainMass: Mass, trainPartCount: number,
     if (isInTunnel) {
         airDragInN = airDragInN * 2;
     }
-    
 
     const p = (slopeForceInN + axleFrictionForceInN + rollingFrictionInN) / airDragCoefficient;
     const q = (-maxPowerInHp * 746 * 18/5) / airDragCoefficient;
@@ -540,13 +543,14 @@ function calculateEquilibriumSpeed(totalTrainMass: Mass, trainPartCount: number,
         ),
         (1/3)
     );
-    const equilibriumSpeed = Math.min(
+    const equilibriumSpeed = Math.max(1, Math.min(
         maxSpeedInKmH,
         Math.min(
             p/c - c/3,
             Math.pow(Math.max(0, totalEngineTe.toKn() * 1000 / airDragCoefficient - p), (1/2))
         )
-    );
+    ));
+
     return Speed.KmPerHour(equilibriumSpeed);
 }
 

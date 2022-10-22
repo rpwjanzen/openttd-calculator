@@ -6,6 +6,7 @@ export class Power {
         return new Power(kWh);
     }
 
+    // Imperial HP
     public static Hp(hp: number) {
         return new Power(hp / 1.34102209);
     }

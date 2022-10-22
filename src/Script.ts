@@ -282,8 +282,8 @@ function recalculateChartData() {
         const dragCoefficient = 20 + 3 * (carCount + engineCount);
         const maxDays = 25;
         
-        const initialSpeed = Speed.KmPerHour(2);
-        // const initialSpeed = Speed.KmPerHour(14);
+        // const initialSpeed = Speed.KmPerHour(2);
+        const initialSpeed = Speed.KmPerHour(14); // trains appear to hit 14km/h on first day
         let currentSpeed = initialSpeed;
         const speedsByDay = [initialSpeed];
         let subspeed = 0;

@@ -13,10 +13,10 @@ import { Engine } from './Engine.js';
 function convertToDisplayUnits(speedUnits: SpeedUnits, speedsByEngineByDay: Speed[][]): number[][] {
     const results: number[][] = [[]];
 
-    for(let i = 0; i < speedsByEngineByDay.length; i++) {
+    for (let i = 0; i < speedsByEngineByDay.length; i++) {
         const arr = speedsByEngineByDay[i];
         const rs: number[] = [];
-        for(let j = 0; j < arr.length; j++) {
+        for (let j = 0; j < arr.length; j++) {
             rs[j] = arr[j].toSpeedUnit(speedUnits);
         }
         results[i] = rs;
@@ -46,20 +46,25 @@ function getEngines() {
                         Role.Freight,
                         Role.FreightJoker,
                         Role.HeavyFreight,
-                        Role.SuperHeavyFreight,
                         Role.HeavyFreightJoker,
+                        Role.LightFreight,
+                        Role.LightFreightJoker,
+                        Role.SuperHeavyFreight,
                         Role.SuperHeavyFreightJoker,
+                        Role.UltraHeavyFreight,
                     );
                     break;
                 case 'General Purpose / Express':
                     matchingRoles.push(
+                        Role.Express,
                         Role.GeneralPurpose,
                         Role.GeneralPurposeExpress,
                         Role.GeneralPurposeExpressJoker,
                         Role.HeavyGeneralPurposeExpress,
-                        Role.SuperHeavyGeneralPurposeExpress,
                         Role.HeavyGeneralPurposeExpressJoker,
+                        Role.SuperHeavyGeneralPurposeExpress,
                         Role.SuperHeavyGeneralPurposeExpressJoker,
+                        Role.UltraHeavyGeneralPurposeExpress,
                     );
                     break;
                 case 'Railcars / Multiple-Unit Trains':
@@ -105,7 +110,7 @@ function createLabel(maxActualSpeed: Speed, engine: Engine, trainMass: Mass): st
     const speedUnits = getSpeedUnits();
     let actualMaxSpeedText = maxActualSpeed.toText(speedUnits);
     let maxSpeedText = engine.maxSpeed.toText(speedUnits);
-    
+
     const minTe = TractiveEffort.Kn(trainMass.mul(35).toTon() / 1000);
     const isUnderTe = engine.te.toKn() < minTe.toKn();
     const minPower = Power.KilowattHour(minTe.toKn() * engine.maxSpeed.toKmPerHour() / 3.6);
@@ -127,7 +132,7 @@ function createLabel(maxActualSpeed: Speed, engine: Engine, trainMass: Mass): st
 
 function createLabels(engines: Engine[], speedsByEngineByDay: Array<Speed[]>, trainMasses: Mass[]): string[] {
     const engineLabels = [];
-    for(let i = 0; i < engines.length; i++) {
+    for (let i = 0; i < engines.length; i++) {
         const engine = engines[i];
         const speedsByDay = speedsByEngineByDay[i];
         const maxActualSpeed = speedsByDay.reduce((c, acc) => Speed.max(c, acc));
@@ -151,9 +156,9 @@ function calculateEquilibriumSpeeds(engines: Engine[]): {
     const loadedCarMass = getLoadedCarMass();
 
     const equilibirumSpeeds = [];
-    for(const engine of engines) {
+    for (const engine of engines) {
         const engineLength = engine.length;
-        
+
         const totalEngineLength = engineCount * engineLength;
         const carCount = Math.trunc((trainLength - totalEngineLength) / carLength);
         const totalCarMass = loadedCarMass.mul(carCount);
@@ -166,10 +171,10 @@ function calculateEquilibriumSpeeds(engines: Engine[]): {
         const minPower = Power.KilowattHour(minTe.toKn() * engine.maxSpeed.toKmPerHour() / 3.6);
         const isUnderpowered = engine.power.tokWh() < minPower.tokWh();
         const isSlow = eqSpeed.toKmPerHour() / engine.maxSpeed.toKmPerHour() < 0.77;
-        equilibirumSpeeds.push({engine: engine, speed: eqSpeed, mass: totalTrainMass, isSlow: isSlow, isUnderTe: isUnderTe, isUnderpowered: isUnderpowered });
+        equilibirumSpeeds.push({ engine: engine, speed: eqSpeed, mass: totalTrainMass, isSlow: isSlow, isUnderTe: isUnderTe, isUnderpowered: isUnderpowered });
     }
 
-    equilibirumSpeeds.sort((a,b) => {
+    equilibirumSpeeds.sort((a, b) => {
         if (a.isUnderTe && !b.isUnderTe) {
             return 1;
         }
@@ -194,16 +199,16 @@ function calculateEquilibriumSpeeds(engines: Engine[]): {
     return equilibirumSpeeds;
 }
 
-function displayEquilibriumSpeeds(equilibirumSpeeds: {engine:Engine, isSlow: boolean, isUnderTe: boolean, isUnderpowered: boolean, speed: Speed}[]) {
+function displayEquilibriumSpeeds(equilibirumSpeeds: { engine: Engine, isSlow: boolean, isUnderTe: boolean, isUnderpowered: boolean, speed: Speed }[]) {
     const speedUnits = getSpeedUnits();
 
     const table = document.querySelector('#engine-speeds-table') as HTMLTableElement;
     // first row is header row; keep it
-    while(table.rows.length > 1) {
-     table.deleteRow(-1);
+    while (table.rows.length > 1) {
+        table.deleteRow(-1);
     }
 
-    for(const e of equilibirumSpeeds) {
+    for (const e of equilibirumSpeeds) {
         const row = table.insertRow(-1);
         const nameCell = row.insertCell(0);
 
@@ -254,7 +259,7 @@ function recalculateChartData() {
     const equilibriumSpeeds = calculateEquilibriumSpeeds(engines);
     equilibriumSpeeds.length = Math.min(15, equilibriumSpeeds.length);
     engines.length = 0;
-    for(const s of equilibriumSpeeds) {
+    for (const s of equilibriumSpeeds) {
         engines.push(s.engine);
     }
 
@@ -268,10 +273,10 @@ function recalculateChartData() {
     const speedsByEngineByDay = [];
     let topSpeed = Speed.KmPerHour(0);
     const totalTrainMasses = [];
-    for(const engine of engines) {
+    for (const engine of engines) {
         topSpeed = Speed.max(engine.maxSpeed, topSpeed);
         const engineLength = engine.length;
-        
+
         const totalEngineLength = engineCount * engineLength;
         const carCount = Math.trunc((trainLength - totalEngineLength) / carLength);
         const totalCarMass = loadedCarMass.mul(carCount);
@@ -281,7 +286,7 @@ function recalculateChartData() {
         const totalTe = engine.te.mul(engineCount);
         const dragCoefficient = 20 + 3 * (carCount + engineCount);
         const maxDays = 25;
-        
+
         // const initialSpeed = Speed.KmPerHour(2);
         const initialSpeed = Speed.KmPerHour(14); // trains appear to hit 14km/h on first day
         let currentSpeed = initialSpeed;
@@ -356,10 +361,10 @@ function calculateNextSpeed(currentSpeed: Speed, totalTrainMass: Mass, carCount:
         q
     );
     const accelerationForceInN = (2.2 * totalEnginePower.tokWh() * 1000) / currentSpeedInMph;
-    
+
     // acceleration is in units of 256 of a km/h-ish per half-tick
-    const acceleration = (accelerationForceInN - frictionForceInN) / ( 4 * totalTrainMass.toTon());
-    
+    const acceleration = (accelerationForceInN - frictionForceInN) / (4 * totalTrainMass.toTon());
+
     // approx matches game results
     const accelPerDay = 185; // 185 = 74 + 74 + (74/2) = 2.5 days?
 
@@ -379,10 +384,10 @@ function calculateNextSpeed2(currentSpeed: Speed, totalTrainMass: Mass, trainPar
     const maxPowerInHp = totalEnginePower.toHp();
     const massInTonnes = totalTrainMass.toTonne();
     const maxSpeedInKmH = maxSpeed.toKmPerHour();
-    const airDragValue = Math.min(192, Math.max(1, Math.floor(2048/maxSpeedInKmH)));
+    const airDragValue = Math.min(192, Math.max(1, Math.floor(2048 / maxSpeedInKmH)));
     const currentSpeedInKmH = currentSpeed.toKmPerHour();
 
-    const forceInN = Math.min(maxTeInKn * 1000, Math.floor((maxPowerInHp * 746) / (currentSpeedInKmH * 5/18)));
+    const forceInN = Math.min(maxTeInKn * 1000, Math.floor((maxPowerInHp * 746) / (currentSpeedInKmH * 5 / 18)));
     const slopeForceInN = 0;
     const axleFrictionInN = massInTonnes * 10;
     const rollingFrictionInN = Math.floor((currentSpeedInKmH + 512) * 15 / 512) * massInTonnes;
@@ -424,7 +429,7 @@ function getAccelerationFromSourceCode(currentSpeed: Speed, trainMass: Mass, tra
     // OpenTTD v1.11.2
     // ground_vehicle.cpp::GetAcceleration()
     const speed = currentSpeed.toKmPerHour();
-    
+
     let resistance = 0;
     // train.h::GetAirDragArea()
     const area = isInTunnel ? 28 : 14;
@@ -433,7 +438,7 @@ function getAccelerationFromSourceCode(currentSpeed: Speed, trainMass: Mass, tra
         // cached_axle_resistance
         resistance = axleResistance;
         // train.h::GetRollingFriction()
-        const rollingFriction = 15 * (512 + currentSpeed.toKmPerHour()) / 512; 
+        const rollingFriction = 15 * (512 + currentSpeed.toKmPerHour()) / 512;
         resistance += trainMass.toTon() * rollingFriction;
     }
 
@@ -516,7 +521,7 @@ function calculateEquilibriumSpeed(totalTrainMass: Mass, trainPartCount: number,
     const maxPowerInHp = totalEnginePower.toHp();
     const maxSpeedInKmH = maxSpeed.toKmPerHour();
     // NewGRF-specific; using default calculation here
-    const airDragOfFirstEngine = Math.min(192, Math.max(1, Math.floor(2048/maxSpeedInKmH)));
+    const airDragOfFirstEngine = Math.min(192, Math.max(1, Math.floor(2048 / maxSpeedInKmH)));
     const massOfPartsOnInclineInT = 0;
     const massOfPartsOnDeclineInT = 0;
     // 1-10, default is 3
@@ -535,26 +540,26 @@ function calculateEquilibriumSpeed(totalTrainMass: Mass, trainPartCount: number,
     }
 
     const p = (slopeForceInN + axleFrictionForceInN + rollingFrictionInN) / airDragCoefficient;
-    const q = (-maxPowerInHp * 746 * 18/5) / airDragCoefficient;
+    const q = (-maxPowerInHp * 746 * 18 / 5) / airDragCoefficient;
     const c = Math.pow(
         27 / 2 * q + Math.pow(
-            Math.pow((27/2 * q), 2) + 27 * Math.pow(p, 3),
-            (1/2)
+            Math.pow((27 / 2 * q), 2) + 27 * Math.pow(p, 3),
+            (1 / 2)
         ),
-        (1/3)
+        (1 / 3)
     );
     const equilibriumSpeed = Math.max(1, Math.min(
         maxSpeedInKmH,
         Math.min(
-            p/c - c/3,
-            Math.pow(Math.max(0, totalEngineTe.toKn() * 1000 / airDragCoefficient - p), (1/2))
+            p / c - c / 3,
+            Math.pow(Math.max(0, totalEngineTe.toKn() * 1000 / airDragCoefficient - p), (1 / 2))
         )
     ));
 
     return Speed.KmPerHour(equilibriumSpeed);
 }
 
-function checkNull<T>(t: T|null): t is T {
+function checkNull<T>(t: T | null): t is T {
     return t !== null;
 }
 
@@ -577,10 +582,10 @@ function getCarLength(): number {
 function getLoadedCarMass(): Mass {
     return Mass.Tonne(parseInt(document.querySelector<HTMLSelectElement>('#carMass')!.value));
 }
-function getRole(): Role|string {
+function getRole(): Role | string {
     return document.querySelector<HTMLSelectElement>('#roles')!.value;
 }
-function getTrackGauge(): TrackGauge|string {
+function getTrackGauge(): TrackGauge | string {
     return document.querySelector<HTMLSelectElement>('#trackGauge')!.value;
 }
 function getStartYear(): number {
@@ -606,7 +611,7 @@ const elementIds = [
 ];
 
 for (const elementId of elementIds) {
-    document.querySelector(elementId)!.addEventListener('change', () => recalculateChartDataRequested());    
+    document.querySelector(elementId)!.addEventListener('change', () => recalculateChartDataRequested());
 }
 
 // function updateStartYear(value: number) {

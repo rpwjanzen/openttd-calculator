@@ -263,7 +263,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(102),
         length: 0.5,
-        expireYear: 1897,
+        expireYear: 1897, // replaced by Carrack
     },
     {
         name: "Shoebox (Electro)",
@@ -422,7 +422,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(218),
         length: 0.625,
-        expireYear: 1960,
+        expireYear: 1960, // replaced by Tenacious
     },
     {
         name: "Tenacious (Diesel)",
@@ -545,7 +545,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(338),
         length: 0.5,
-        expireYear: 1982,
+        expireYear: 1982, // replaced by Onslaught
     },
     {
         name: "Relentless (Diesel)",
@@ -731,7 +731,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(238),
         length: 0.375,
-        expireYear: 3000,
+        expireYear: 1954,
     },
     {
         name: "Little Bear (Diesel)",
@@ -743,7 +743,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(249),
         length: 0.375,
-        expireYear: 3000,
+        expireYear: 1992,
     },
     {
         name: "Goliath (Diesel)",
@@ -768,7 +768,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(135),
         length: 0.375,
-        expireYear: 3000,
+        expireYear: 1922, // replaced by Saxon
     },
     {
         name: "Captain Steel (Diesel)",
@@ -793,7 +793,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(159),
         length: 0.375,
-        expireYear: 3000,
+        expireYear: 1966,
     },
     {
         name: "Zest (Electric)",
@@ -818,7 +818,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(207),
         length: 0.5,
-        expireYear: 3000,
+        expireYear: 1900,
     },
     {
         name: "2-6-0 Braf (Steam)",
@@ -830,7 +830,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(228),
         length: 0.5,
-        expireYear: 3000,
+        expireYear: 1930,
     },
     {
         name: "0-8-0 Haar (Steam)",
@@ -842,7 +842,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(256),
         length: 0.5,
-        expireYear: 3000,
+        expireYear: 1960,
     },
     {
         name: "Growler (Diesel)",
@@ -854,7 +854,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(294),
         length: 0.5,
-        expireYear: 3000,
+        expireYear: 1990,
     },
     {
         name: "Slug (Diesel)",
@@ -866,7 +866,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(324),
         length: 0.5,
-        expireYear: 3000,
+        expireYear: 2020,
     },
     {
         name: "Phoenix (Diesel)",
@@ -940,7 +940,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(329),
         length: 0.625,
-        expireYear: 3000,
+        expireYear: 1999,
     },
     {
         name: "Yillen",
@@ -977,7 +977,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(291),
         length: 0.625,
-        expireYear: 3000,
+        expireYear: 1962, // replaced by intrepid
     },
     {
         name: "Quietus (Diesel)",
@@ -1014,7 +1014,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(414),
         length: 0.625,
-        expireYear: 3000,
+        expireYear: 1930,
     },
     {
         name: "4-8-0 Lemon (Steam)",
@@ -1026,7 +1026,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(467),
         length: 0.75,
-        expireYear: 3000,
+        expireYear: 1960,
     },
     {
         name: "Chinook (Diesel)",
@@ -1038,7 +1038,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(471),
         length: 0.75,
-        expireYear: 3000,
+        expireYear: 1980,
     },
     {
         name: "Grid (Diesel)",
@@ -1050,7 +1050,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(353),
         length: 0.5,
-        expireYear: 3000,
+        expireYear: 2020,
     },
     {
         name: "Blackthorn (Diesel)",

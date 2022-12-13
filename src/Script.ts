@@ -100,8 +100,7 @@ function getEngines() {
     }
 
     // filter out engines from years that are not selected
-    engines = engines.filter(x => x.expireYear >= startYear);
-    engines = engines.filter(x => x.year <= endYear);
+    engines = engines.filter(x => !(endYear < x.year || x.expireYear < startYear));
 
     return engines;
 }
@@ -257,7 +256,7 @@ function recalculateChartData() {
         document.querySelector<HTMLDivElement>('#chart')!.style.display = "block";
     }
     const equilibriumSpeeds = calculateEquilibriumSpeeds(engines);
-    equilibriumSpeeds.length = Math.min(15, equilibriumSpeeds.length);
+    // equilibriumSpeeds.length = Math.min(15, equilibriumSpeeds.length);
     engines.length = 0;
     for (const s of equilibriumSpeeds) {
         engines.push(s.engine);
@@ -319,17 +318,18 @@ function recalculateChartData() {
 
         speedsByEngineByDay.push(speedsByDay);
     }
+    // TODO: pick top 5 engines & order by achieved max speed
     const engineLabels = createLabels(engines, speedsByEngineByDay, totalTrainMasses);
 
     const speedUnits = getSpeedUnits();
     const data = convertToDisplayUnits(speedUnits, speedsByEngineByDay);
 
     if (data[0] !== undefined) {
-        engineLabels.length = Math.min(5, engineLabels.length);
+        // engineLabels.length = Math.min(5, engineLabels.length);
         legend = Chartist.plugins.legend({
             legendNames: engineLabels,
         });
-        data.length = Math.min(5, data.length);
+        // data.length = Math.min(5, data.length);
 
         lineChart = new Chartist.Line('#chart', {
             labels: Object.keys(data[0]),

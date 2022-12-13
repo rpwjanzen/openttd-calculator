@@ -8,6 +8,18 @@ form {
     grid-template-columns: auto 1fr;
 }
 
+.two-col {
+    display: flex;
+}
+
+#startYearRange  {
+    flex-grow: 1;
+}
+
+#endYearRange  {
+    flex-grow: 1;
+}
+
 /* select {
     font-size: x-large;
 }

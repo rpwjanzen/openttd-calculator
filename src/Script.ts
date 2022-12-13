@@ -285,7 +285,8 @@ function recalculateChartData() {
         const totalEnginePower = engine.power.mul(engineCount);
         const totalTe = engine.te.mul(engineCount);
         const dragCoefficient = 20 + 3 * (carCount + engineCount);
-        const maxDays = 25;
+        // const maxDays = 25; // this is actually 10 days (25 / 2.5) -> 10 days
+        const maxDays = 75;
 
         // const initialSpeed = Speed.KmPerHour(2);
         const initialSpeed = Speed.KmPerHour(14); // trains appear to hit 14km/h on first day
@@ -324,11 +325,11 @@ function recalculateChartData() {
     const data = convertToDisplayUnits(speedUnits, speedsByEngineByDay);
 
     if (data[0] !== undefined) {
-        engineLabels.length = Math.min(15, engineLabels.length);
+        engineLabels.length = Math.min(5, engineLabels.length);
         legend = Chartist.plugins.legend({
             legendNames: engineLabels,
         });
-        data.length = Math.min(15, data.length);
+        data.length = Math.min(5, data.length);
 
         lineChart = new Chartist.Line('#chart', {
             labels: Object.keys(data[0]),
@@ -337,6 +338,8 @@ function recalculateChartData() {
             high: topSpeed.toSpeedUnit(speedUnits),
             low: 0,
             fullWidth: true,
+            axisX: { showLabel: false, showGrid: false },
+            showPoint: false,
             plugins: [
                 legend
             ]
@@ -603,7 +606,7 @@ const elementIds = [
     '#speedUnits',
     '#trainLength',
     '#engineCount',
-    '#slope',
+    // '#slope',
     '#carLength',
     '#carMass',
     '#roles',

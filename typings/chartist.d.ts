@@ -14,6 +14,8 @@ declare module Chartist {
     showLine: boolean,
     showPoint: boolean,
     width: number|undefined
+    axisX: { showLabel: boolean, showGrid: boolean },
+    axisY: { showLabel: boolean, showGrid: boolean }
   }
   interface LineChartData {
     labels: string[],

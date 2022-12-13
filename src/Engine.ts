@@ -4,6 +4,7 @@ import { Power } from './Power.js';
 import { TractiveEffort } from './TractiveEffort.js';
 import { TrackGauge } from './TrackGauge.js';
 import { Role } from './Role.js';
+import { Generation } from './Generation.js';
 
 export interface Engine {
     name: string;
@@ -14,6 +15,5 @@ export interface Engine {
     length: number;
     gauge: TrackGauge;
     role: Role;
-    year: number;
-    expireYear: number;
+    generation: Generation;
 }

@@ -9,6 +9,7 @@ import { TrackGauge } from './TrackGauge.js';
 import { Role } from './Role.js';
 import { allEngines } from './Engines.js';
 import { Engine } from './Engine.js';
+import { Generation } from './Generation.js';
 
 function convertToDisplayUnits(speedUnits: SpeedUnits, speedsByEngineByDay: Speed[][]): number[][] {
     const results: number[][] = [[]];
@@ -29,8 +30,7 @@ function convertToDisplayUnits(speedUnits: SpeedUnits, speedsByEngineByDay: Spee
 function getEngines() {
     const role = getRole();
     const trackGauge = getTrackGauge();
-    const startYear = getStartYear();
-    const endYear = getEndYear();
+    const generation = getGeneration();
 
     let engines = [];
     // filter out roles that are not selected
@@ -99,8 +99,8 @@ function getEngines() {
             break;
     }
 
-    // filter out engines from years that are not selected
-    engines = engines.filter(x => !(endYear < x.year || x.expireYear < startYear));
+    // filter out engines from generations that are not selected
+    engines = engines.filter(x => x.generation === generation);
 
     return engines;
 }
@@ -591,11 +591,8 @@ function getRole(): Role | string {
 function getTrackGauge(): TrackGauge | string {
     return document.querySelector<HTMLSelectElement>('#trackGauge')!.value;
 }
-function getStartYear(): number {
-    return parseInt(document.querySelector<HTMLInputElement>('#startYear')!.value);
-}
-function getEndYear(): number {
-    return parseInt(document.querySelector<HTMLInputElement>('#endYear')!.value);
+function getGeneration(): Generation {
+    return parseInt(document.querySelector<HTMLSelectElement>('#generation')!.value) as Generation;
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -606,82 +603,13 @@ const elementIds = [
     '#speedUnits',
     '#trainLength',
     '#engineCount',
-    // '#slope',
     '#carLength',
     '#carMass',
     '#roles',
-    '#trackGauge'
+    '#trackGauge',
+    '#generation'
 ];
 
 for (const elementId of elementIds) {
     document.querySelector(elementId)!.addEventListener('change', () => recalculateChartDataRequested());
 }
-
-// function updateStartYear(value: number) {
-//     const startYear = document.querySelector<HTMLInputElement>('#startYear')!.value;
-//     document.querySelector<HTMLInputElement>('#startYearRange')!.value = startYear;
-
-//     const endYear = Math.max(getEndYear(), parseInt(startYear));
-//     document.querySelector<HTMLInputElement>('#endYear')!.value = endYear.toFixed(0);
-//     document.querySelector<HTMLInputElement>('#endYearRange')!.value = endYear.toFixed(0);
-// }
-
-document.querySelector<HTMLInputElement>('#startYear')!.addEventListener('change', () => {
-    const startYear = document.querySelector<HTMLInputElement>('#startYear')!.value;
-    document.querySelector<HTMLInputElement>('#startYearRange')!.value = startYear;
-
-    const endYear = Math.max(getEndYear(), parseInt(startYear));
-    document.querySelector<HTMLInputElement>('#endYear')!.value = endYear.toFixed(0);
-    document.querySelector<HTMLInputElement>('#endYearRange')!.value = endYear.toFixed(0);
-    recalculateChartDataRequested();
-});
-
-document.querySelector('#endYear')!.addEventListener('change', () => {
-    const endYear = document.querySelector<HTMLInputElement>('#endYear')!.value;
-    document.querySelector<HTMLInputElement>('#endYearRange')!.value = endYear;
-
-    const startYear = Math.min(parseInt(endYear), getStartYear());
-    document.querySelector<HTMLInputElement>('#startYear')!.value = startYear.toFixed(0);
-    document.querySelector<HTMLInputElement>('#startYearRange')!.value = startYear.toFixed(0);
-    recalculateChartDataRequested();
-});
-
-document.querySelector('#startYearRange')!.addEventListener('change', () => {
-    const startYear = document.querySelector<HTMLInputElement>('#startYearRange')!.value;
-    document.querySelector<HTMLInputElement>('#startYear')!.value = startYear;
-
-    const endYear = Math.max(getEndYear(), parseInt(startYear));
-    document.querySelector<HTMLInputElement>('#endYear')!.value = endYear.toFixed(0);
-    document.querySelector<HTMLInputElement>('#endYearRange')!.value = endYear.toFixed(0);
-    recalculateChartDataRequested();
-});
-
-document.querySelector('#startYearRange')!.addEventListener('input', () => {
-    const startYear = document.querySelector<HTMLInputElement>('#startYearRange')!.value;
-    document.querySelector<HTMLInputElement>('#startYear')!.value = startYear;
-
-    const endYear = Math.max(getEndYear(), parseInt(startYear));
-    document.querySelector<HTMLInputElement>('#endYear')!.value = endYear.toFixed(0);
-    document.querySelector<HTMLInputElement>('#endYearRange')!.value = endYear.toFixed(0);
-    recalculateChartDataRequested();
-});
-
-document.querySelector('#endYearRange')!.addEventListener('change', () => {
-    const endYear = document.querySelector<HTMLInputElement>('#endYearRange')!.value;
-    document.querySelector<HTMLInputElement>('#endYear')!.value = endYear;
-
-    const startYear = Math.min(parseInt(endYear), getStartYear());
-    document.querySelector<HTMLInputElement>('#startYear')!.value = startYear.toFixed(0);
-    document.querySelector<HTMLInputElement>('#startYearRange')!.value = startYear.toFixed(0);
-    recalculateChartDataRequested();
-});
-
-document.querySelector('#endYearRange')!.addEventListener('input', () => {
-    const endYear = document.querySelector<HTMLInputElement>('#endYearRange')!.value;
-    document.querySelector<HTMLInputElement>('#endYear')!.value = endYear;
-
-    const startYear = Math.min(parseInt(endYear), getStartYear());
-    document.querySelector<HTMLInputElement>('#startYear')!.value = startYear.toFixed(0);
-    document.querySelector<HTMLInputElement>('#startYearRange')!.value = startYear.toFixed(0);
-    recalculateChartDataRequested();
-});

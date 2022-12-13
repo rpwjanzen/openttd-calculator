@@ -114,19 +114,15 @@
             <option>Electric</option>
         </select>
 
-        <label for="startYear">Start Year</label>
-        <label for="startYearRange" class="hidden">Start Year</label>
-        <div class="two-col">
-            <input id="startYear" type="number" min="1860" max="2050" value="1860" step="10">
-            <input id="startYearRange" type="range" min="1860" max="2050" value="1860" step="10">
-        </div>
-
-        <label for="endYear">End Year</label>
-        <label for="endYearRange" class="hidden">End Year</label>
-        <div class="two-col">
-            <input id="endYear" type="number" min="1860" max="2050" value="1860" step="10">
-            <input id="endYearRange" type="range" min="1860" max="2050" value="1860" step="10">
-        </div>
+        <label for="generation">Generation</label>
+        <select id="generation">
+            <option value="1860">1860/1860</option>
+            <option value="1900">1900/1905</option>
+            <option value="1930">1930/1950</option>
+            <option value="1960">1960/2000</option>
+            <option value="1990">1990</option>
+            <option value="2020">2020</option>
+        </select>
     </form>
     <section>
         <table id="engine-speeds-table">

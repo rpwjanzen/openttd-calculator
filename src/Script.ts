@@ -29,12 +29,16 @@ function convertToDisplayUnits(speedUnits: SpeedUnits, speedsByEngineByDay: Spee
 
 
 function getEngines() {
-    const role = getRole();
-    const trackGauge = getTrackGauge();
+    const trackGauges = getTrackGauges();
     const generation = getGeneration();
     const gameplayMode = getGameplayMode();
 
+    let role = 'All';
     let engines = [];
+    if (trackGauges[0] !== TrackGauge.narrow) {
+        role = getRole();
+    }
+
     // filter out roles that are not selected
     switch (role) {
         case 'All':
@@ -90,16 +94,7 @@ function getEngines() {
             engines = allEngines.filter(x => matchingRoles.indexOf(x.role) !== -1);
             break;
     }
-
-    // filter out gauges that are not selected
-    switch (trackGauge) {
-        case 'All':
-            engines = engines;
-            break;
-        default:
-            engines = engines.filter(x => x.gauge === trackGauge);
-            break;
-    }
+    engines = engines.filter(x => trackGauges.includes(x.gauge));
 
     switch (gameplayMode) {
         case 'Full':
@@ -598,12 +593,24 @@ function getLoadedCarMass(): Mass {
 function getRole(): Role | string {
     return document.querySelector<HTMLSelectElement>('#roles')!.value;
 }
-function getTrackGauge(): TrackGauge | string {
-    return document.querySelector<HTMLSelectElement>('#trackGauge')!.value;
+function getTrackGauges(): TrackGauge[] {
+    const trackGauge = document.querySelector<HTMLSelectElement>('#trackGauge')!.value;
+    switch (trackGauge) {
+        case TrackGauge.narrow:
+            return [TrackGauge.narrow];
+        case 'All':
+            return [TrackGauge.electric, TrackGauge.metro, TrackGauge.narrow, TrackGauge.standard];
+        case 'Standard/Electric':
+            return [TrackGauge.electric, TrackGauge.standard];
+        default:
+            return [];
+    }
 }
+
 function getGeneration(): Generation {
-    return parseInt(document.querySelector<HTMLSelectElement>('#generation')!.value) as Generation;
+    return document.querySelector<HTMLSelectElement>('#generation')!.value as Generation;
 }
+
 function getGameplayMode(): GameplayMode {
     return document.querySelector<HTMLSelectElement>('#gameplayMode')!.value as GameplayMode;
 }

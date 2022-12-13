@@ -10,6 +10,7 @@ import { Role } from './Role.js';
 import { allEngines } from './Engines.js';
 import { Engine } from './Engine.js';
 import { Generation } from './Generation.js';
+import { GameplayMode } from './GameplayMode.js';
 
 function convertToDisplayUnits(speedUnits: SpeedUnits, speedsByEngineByDay: Speed[][]): number[][] {
     const results: number[][] = [[]];
@@ -31,6 +32,7 @@ function getEngines() {
     const role = getRole();
     const trackGauge = getTrackGauge();
     const generation = getGeneration();
+    const gameplayMode = getGameplayMode();
 
     let engines = [];
     // filter out roles that are not selected
@@ -96,6 +98,14 @@ function getEngines() {
             break;
         default:
             engines = engines.filter(x => x.gauge === trackGauge);
+            break;
+    }
+
+    switch (gameplayMode) {
+        case 'Full':
+            break;
+        case 'Simplified':
+            engines = engines.filter(x => x.gameplayMode === gameplayMode);
             break;
     }
 
@@ -594,6 +604,9 @@ function getTrackGauge(): TrackGauge | string {
 function getGeneration(): Generation {
     return parseInt(document.querySelector<HTMLSelectElement>('#generation')!.value) as Generation;
 }
+function getGameplayMode(): GameplayMode {
+    return document.querySelector<HTMLSelectElement>('#gameplayMode')!.value as GameplayMode;
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     recalculateChartDataRequested();
@@ -607,7 +620,8 @@ const elementIds = [
     '#carMass',
     '#roles',
     '#trackGauge',
-    '#generation'
+    '#generation',
+    '#gameplayMode'
 ];
 
 for (const elementId of elementIds) {

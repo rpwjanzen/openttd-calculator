@@ -32,5 +32,6 @@ export enum Role {
     MailHighCapacityUrban = 'Mail High Capacity Urban',
 
     Joker = 'Joker',
-    DrivingCab = 'Driving Cab'
+    DrivingCab = 'Driving Cab',
+    Lolz = 'Lolz'
 }

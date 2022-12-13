@@ -6,6 +6,7 @@ import { TractiveEffort } from './TractiveEffort.js';
 import { TrackGauge } from './TrackGauge.js';
 import { Role } from './Role.js';
 import { Generation } from './Generation.js';
+import { GameplayMode } from './GameplayMode.js';
 
 // length is divided into 1/16 units
 export const allEngines: Engine[] = [
@@ -19,7 +20,8 @@ export const allEngines: Engine[] = [
         length: 0.375,
         gauge: TrackGauge.standard,
         role: Role.GeneralPurposeExpress,
-        generation: Generation.first
+        generation: Generation.first,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "2-6-2 Merrylegs (Steam)",
@@ -31,6 +33,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         role: Role.GeneralPurposeExpress,
         generation: Generation.second,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "2-6-2 Proper Job (Steam)",
@@ -42,6 +45,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(111),
         length: 0.375,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Kelpie (Diesel)",
@@ -53,6 +57,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(212),
         length: 0.375,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Griffon (Diesel)",
@@ -64,6 +69,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(218),
         length: 0.375,
+        gameplayMode: GameplayMode.simpliflied,
     },
 
     {
@@ -76,6 +82,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(105),
         length: 0.375,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "0-6-4 Stag (Steam)",
@@ -87,6 +94,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(117),
         length: 0.375,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Foxhound (Diesel)",
@@ -98,6 +106,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(206),
         length: 0.375,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Lynx (Diesel)",
@@ -109,6 +118,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(212),
         length: 0.375,
+        gameplayMode: GameplayMode.full,
     },
 
     {
@@ -121,6 +131,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(176),
         length: 0.25,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Argus (Electric)",
@@ -132,6 +143,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(197),
         length: 0.25,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Booster (Electric)",
@@ -143,6 +155,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(206),
         length: 0.375,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Booster (Diesel)",
@@ -154,6 +167,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(206),
         length: 0.375,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Tornado (Electric)",
@@ -165,6 +179,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(206),
         length: 0.375,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Tornado (Diesel)",
@@ -176,6 +191,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(206),
         length: 0.375,
+        gameplayMode: GameplayMode.full,
     },
 
     {
@@ -188,6 +204,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         role: Role.Express,
         generation: Generation.first,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "4-4-0 Carrack (Steam)",
@@ -199,6 +216,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(158),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "4-4-0 Tencendur (Steam)",
@@ -210,6 +228,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(193),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Daring (Diesel)",
@@ -221,6 +240,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(221),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Shredder (Diesel)",
@@ -232,6 +252,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(224),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
 
     {
@@ -244,6 +265,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(102),
         length: 0.5, // replaced by Carrack
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Shoebox (Electro)",
@@ -255,6 +277,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(197),
         length: 0.5,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Shoebox (Diesel)",
@@ -266,6 +289,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(197),
         length: 0.5,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Super Shoebox (Electric)",
@@ -277,6 +301,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(212),
         length: 0.5,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Super Shoebox (Diesel)",
@@ -288,6 +313,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(212),
         length: 0.5,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Ultra Shoebox (Electric)",
@@ -299,6 +325,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(229),
         length: 0.5,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Ultra Shoebox (Diesel)",
@@ -310,6 +337,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(229),
         length: 0.5,
+        gameplayMode: GameplayMode.full,
     },
 
 
@@ -323,6 +351,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(202),
         length: 0.625,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "4-6-0 Strongbow (Steam)",
@@ -334,6 +363,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(228),
         length: 0.625,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Wyvern (Diesel)",
@@ -345,6 +375,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(383),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Vanguard (Diesel)",
@@ -356,6 +387,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(449),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Revolution (Diesel)",
@@ -367,6 +399,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(280),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Revolution (Electro)",
@@ -378,6 +411,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(280),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
 
     {
@@ -390,6 +424,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(218),
         length: 0.625, // replaced by Tenacious
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Tenacious (Diesel)",
@@ -401,6 +436,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(235),
         length: 0.5,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Resilient (Diesel)",
@@ -412,6 +448,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(330),
         length: 0.5,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Evolution (Diesel)",
@@ -423,6 +460,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(330),
         length: 0.5,
+        gameplayMode: GameplayMode.full,
     },
 
     {
@@ -435,6 +473,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(383),
         length: 0.625,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Intrepid (Diesel)",
@@ -446,6 +485,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(338),
         length: 0.5,
+        gameplayMode: GameplayMode.full,
     },
 
     {
@@ -458,6 +498,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(367),
         length: 0.75,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Dragon (Diesel)",
@@ -469,6 +510,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(291),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Onslaught (Diesel)",
@@ -480,6 +522,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(294),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
 
     {
@@ -492,6 +535,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(382),
         length: 0.5,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Falcon (Diesel)",
@@ -503,6 +547,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(338),
         length: 0.5, // replaced by Onslaught
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Relentless (Diesel)",
@@ -514,6 +559,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(280),
         length: 0.5,
+        gameplayMode: GameplayMode.full,
     },
 
     {
@@ -526,6 +572,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(213),
         length: 0.625,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Vulcan (Diesel)",
@@ -537,6 +584,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(309),
         length: 0.5,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Dreadnought (Diesel)",
@@ -548,6 +596,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(300),
         length: 0.5,
+        gameplayMode: GameplayMode.full,
     },
 
     {
@@ -560,6 +609,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(220),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Moor Gallop (Electric)",
@@ -571,6 +621,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(257),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Roarer (Electric)",
@@ -582,6 +633,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(235),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Fury (Electric)",
@@ -593,6 +645,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(241),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Hector (Electric)",
@@ -604,6 +657,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(244),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
 
     {
@@ -616,6 +670,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(241),
         length: 0.5,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Screamer (Electric)",
@@ -627,6 +682,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(250),
         length: 0.5,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Nimbus (Electric)",
@@ -638,6 +694,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(250),
         length: 0.5,
+        gameplayMode: GameplayMode.full,
     },
 
     {
@@ -650,6 +707,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(294),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
 
     {
@@ -662,6 +720,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(241),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
 
     {
@@ -674,6 +733,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(238),
         length: 0.375,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Little Bear (Diesel)",
@@ -685,6 +745,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(249),
         length: 0.375,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Goliath (Diesel)",
@@ -696,6 +757,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(260),
         length: 0.375,
+        gameplayMode: GameplayMode.simpliflied,
     },
 
     {
@@ -708,6 +770,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(135),
         length: 0.375, // replaced by Saxon
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Captain Steel (Diesel)",
@@ -719,6 +782,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(257),
         length: 0.375,
+        gameplayMode: GameplayMode.full,
     },
 
     {
@@ -731,6 +795,19 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(159),
         length: 0.375,
+        gameplayMode: GameplayMode.simpliflied,
+    },
+    {
+        name: "Stoat (Electric)",
+        role: Role.Freight,
+        generation: Generation.third,
+        maxSpeed: Speed.MilesPerHour(60),
+        power: Power.Hp(1050),
+        mass: Mass.Tonne(54),
+        gauge: TrackGauge.electric,
+        te: TractiveEffort.Kn(159),
+        length: 0.375,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Zest (Electric)",
@@ -742,6 +819,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(159),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
 
     {
@@ -754,6 +832,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(207),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "2-6-0 Braf (Steam)",
@@ -765,6 +844,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(228),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "0-8-0 Haar (Steam)",
@@ -776,6 +856,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(256),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Growler (Diesel)",
@@ -787,6 +868,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(294),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Slug (Diesel)",
@@ -798,6 +880,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(324),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Phoenix (Diesel)",
@@ -809,6 +892,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(353),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
 
     {
@@ -821,6 +905,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(227),
         length: 0.5,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Merlion (Diesel)",
@@ -832,6 +917,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(265),
         length: 0.5,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Viking (Diesel)",
@@ -843,6 +929,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(280),
         length: 0.5,
+        gameplayMode: GameplayMode.full,
     },
 
     {
@@ -855,6 +942,19 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(288),
         length: 0.625,
+        gameplayMode: GameplayMode.simpliflied,
+    },
+    {
+        name: "0-6-0+0-6-0 Xeres (Steam)",
+        role: Role.HeavyFreight,
+        generation: Generation.second,
+        maxSpeed: Speed.MilesPerHour(45),
+        power: Power.Hp(1450),
+        mass: Mass.Tonne(98),
+        gauge: TrackGauge.standard,
+        te: TractiveEffort.Kn(288),
+        length: 0.625,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "2-8-0 Mainstay (Steam)",
@@ -866,6 +966,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(329),
         length: 0.625,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Yillen (Diesel)",
@@ -877,6 +978,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(412),
         length: 0.625,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Doubletide (Diesel)",
@@ -888,6 +990,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(400),
         length: 0.625,
+        gameplayMode: GameplayMode.simpliflied,
     },
 
     {
@@ -900,6 +1003,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(291),
         length: 0.625, // replaced by intrepid
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Quietus (Diesel)",
@@ -911,6 +1015,7 @@ export const allEngines: Engine[] = [
         length: 0.5,
         gauge: TrackGauge.standard,
         role: Role.HeavyFreightJoker,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Quietus (Electric)",
@@ -922,6 +1027,7 @@ export const allEngines: Engine[] = [
         length: 0.5,
         gauge: TrackGauge.electric,
         role: Role.HeavyFreightJoker,
+        gameplayMode: GameplayMode.full,
     },
 
     {
@@ -934,6 +1040,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(414),
         length: 0.625,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "4-8-0 Lemon (Steam)",
@@ -945,6 +1052,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(467),
         length: 0.75,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Chinook (Diesel)",
@@ -956,6 +1064,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(471),
         length: 0.75,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Grid (Diesel)",
@@ -967,6 +1076,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(353),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Blackthorn (Diesel)",
@@ -978,6 +1088,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(365),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
 
     {
@@ -990,6 +1101,7 @@ export const allEngines: Engine[] = [
         te: TractiveEffort.Kn(466),
         length: 0.625,
         role: Role.HeavyFreightJoker,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "2-6-0+0-6-2 Esk (Steam)",
@@ -1001,6 +1113,7 @@ export const allEngines: Engine[] = [
         length: 0.75,
         gauge: TrackGauge.standard,
         role: Role.HeavyFreightJoker,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Withershins (Diesel)",
@@ -1012,6 +1125,7 @@ export const allEngines: Engine[] = [
         te: TractiveEffort.Kn(483),
         length: 0.75,
         gauge: TrackGauge.standard,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Bone (Diesel)",
@@ -1023,6 +1137,7 @@ export const allEngines: Engine[] = [
         length: 0.5,
         gauge: TrackGauge.standard,
         role: Role.HeavyFreightJoker,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Defiant (Diesel)",
@@ -1034,6 +1149,7 @@ export const allEngines: Engine[] = [
         length: 0.5,
         gauge: TrackGauge.standard,
         role: Role.HeavyFreightJoker,
+        gameplayMode: GameplayMode.full,
     },
 
     {
@@ -1046,6 +1162,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(488),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Highlander (Diesel)",
@@ -1057,6 +1174,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(499),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
 
     {
@@ -1069,6 +1187,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(499),
         length: 0.5,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Super Stentor (Diesel)",
@@ -1080,6 +1199,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.standard,
         te: TractiveEffort.Kn(503),
         length: 0.5,
+        gameplayMode: GameplayMode.full,
     },
 
     {
@@ -1092,6 +1212,7 @@ export const allEngines: Engine[] = [
         length: 0.5,
         gauge: TrackGauge.standard,
         role: Role.SuperHeavyFreightJoker,
+        gameplayMode: GameplayMode.full,
     },
 
     {
@@ -1104,6 +1225,19 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(383),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
+    },
+    {
+        name: "Flindermouse (Electric)",
+        role: Role.UltraHeavyFreight,
+        generation: Generation.third,
+        maxSpeed: Speed.MilesPerHour(60),
+        power: Power.Hp(2500),
+        mass: Mass.Tonne(130),
+        gauge: TrackGauge.electric,
+        te: TractiveEffort.Kn(383),
+        length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Peasweep (Electric)",
@@ -1115,6 +1249,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(442),
         length: 0.75,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Flanders Storm (Electric)",
@@ -1126,6 +1261,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(468),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Triton (Electric)",
@@ -1137,6 +1273,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.electric,
         te: TractiveEffort.Kn(499),
         length: 0.5,
+        gameplayMode: GameplayMode.simpliflied,
     },
 
     {
@@ -1149,6 +1286,7 @@ export const allEngines: Engine[] = [
         gauge: TrackGauge.narrow,
         role: Role.GeneralPurpose,
         generation: Generation.first,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "2-6-4 Bean Feast (Steam)",
@@ -1160,6 +1298,7 @@ export const allEngines: Engine[] = [
         length: 0.25,
         gauge: TrackGauge.narrow,
         role: Role.GeneralPurpose,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Pikel (Diesel)",
@@ -1171,6 +1310,7 @@ export const allEngines: Engine[] = [
         length: 0.25,
         gauge: TrackGauge.narrow,
         role: Role.GeneralPurpose,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Boar Cat (Diesel)",
@@ -1182,6 +1322,7 @@ export const allEngines: Engine[] = [
         length: 0.25,
         gauge: TrackGauge.narrow,
         role: Role.GeneralPurpose,
+        gameplayMode: GameplayMode.simpliflied,
     },
 
     {
@@ -1194,6 +1335,19 @@ export const allEngines: Engine[] = [
         length: 0.375,
         gauge: TrackGauge.narrow,
         role: Role.GeneralPurpose,
+        gameplayMode: GameplayMode.simpliflied,
+    },
+    {
+        name: "0-4-4-0 Thor (Steam)",
+        generation: Generation.second,
+        maxSpeed: Speed.MilesPerHour(45),
+        power: Power.Hp(600),
+        mass: Mass.Tonne(30),
+        te: TractiveEffort.Kn(88),
+        length: 0.375,
+        gauge: TrackGauge.narrow,
+        role: Role.GeneralPurpose,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Gargouille (Diesel)",
@@ -1205,6 +1359,7 @@ export const allEngines: Engine[] = [
         length: 0.375,
         gauge: TrackGauge.narrow,
         role: Role.GeneralPurpose,
+        gameplayMode: GameplayMode.simpliflied,
     },
     {
         name: "Maximillian (Diesel)",
@@ -1216,6 +1371,7 @@ export const allEngines: Engine[] = [
         length: 0.375,
         gauge: TrackGauge.narrow,
         role: Role.GeneralPurpose,
+        gameplayMode: GameplayMode.simpliflied,
     },
 
     {
@@ -1226,8 +1382,9 @@ export const allEngines: Engine[] = [
         te: TractiveEffort.Kn(132),
         length: 0.25,
         gauge: TrackGauge.standard,
-        role: Role.Joker,
+        role: Role.Lolz,
         generation: Generation.first,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Gronk (Diesel)",
@@ -1237,8 +1394,9 @@ export const allEngines: Engine[] = [
         te: TractiveEffort.Kn(202),
         length: 0.25,
         gauge: TrackGauge.standard,
-        role: Role.Joker,
+        role: Role.Lolz,
         generation: Generation.fourth,
+        gameplayMode: GameplayMode.full,
     },
 
     {
@@ -1250,7 +1408,8 @@ export const allEngines: Engine[] = [
         te: TractiveEffort.Kn(128),
         length: 0.25,
         gauge: TrackGauge.standard,
-        role: Role.Joker,
+        role: Role.Lolz,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Chuggypig (Diesel)",
@@ -1261,7 +1420,8 @@ export const allEngines: Engine[] = [
         te: TractiveEffort.Kn(176),
         length: 0.25,
         gauge: TrackGauge.standard,
-        role: Role.Joker,
+        role: Role.Lolz,
+        gameplayMode: GameplayMode.full,
     },
     {
         name: "Magnum 70 (Diesel)",
@@ -1272,7 +1432,8 @@ export const allEngines: Engine[] = [
         te: TractiveEffort.Kn(257),
         length: 0.25,
         gauge: TrackGauge.standard,
-        role: Role.Joker,
+        role: Role.Lolz,
+        gameplayMode: GameplayMode.full,
     },
 
     {
@@ -1284,88 +1445,7 @@ export const allEngines: Engine[] = [
         te: TractiveEffort.Kn(49),
         length: 0.25,
         gauge: TrackGauge.standard,
-        role: Role.Joker,
-    },
-
-    {
-        name: "Serpentine (Metro)",
-        generation: Generation.first,
-        maxSpeed: Speed.MilesPerHour(45),
-        power: Power.Hp(600),
-        mass: Mass.Tonne(72),
-        te: TractiveEffort.Kn(212),
-        length: 1,
-        gauge: TrackGauge.metro,
-        role: Role.PassengerRailcarHighCapacitySuburban,
-    },
-    {
-        name: "Longwater (Metro)",
-        generation: Generation.first,
-        maxSpeed: Speed.MilesPerHour(45),
-        power: Power.Hp(600),
-        mass: Mass.Tonne(64),
-        te: TractiveEffort.Kn(188),
-        length: 1,
-        gauge: TrackGauge.metro,
-        role: Role.PassengerRailcarHighCapacitySuburban,
-    },
-
-    {
-        name: "Autocoach Set",
-        generation: Generation.first,
-        maxSpeed: Speed.MilesPerHour(75),
-        power: Power.Hp(10),
-        mass: Mass.Tonne(32),
-        te: TractiveEffort.Kn(1),
-        length: 0.625,
-        gauge: TrackGauge.metro,
-        role: Role.DrivingCab,
-    },
-
-    {
-        name: "Deasil (Diesel)",
-        generation: Generation.third,
-        maxSpeed: Speed.MilesPerHour(60),
-        power: Power.Hp(200),
-        mass: Mass.Tonne(30),
-        te: TractiveEffort.Kn(88),
-        length: 0.5,
-        gauge: TrackGauge.standard,
-        role: Role.PassengerRailcarHighCapacitySuburban,
-    },
-
-    {
-        name: "Athena (Electric)",
-        generation: Generation.first,
-        maxSpeed: Speed.MilesPerHour(60),
-        power: Power.Hp(320),
-        mass: Mass.Tonne(28),
-        te: TractiveEffort.Kn(82),
-        length: 0.5,
-        gauge: TrackGauge.electric,
-        role: Role.PassengerRailcarHighCapacitySuburban,
-    },
-
-    {
-        name: "Geronimo (Electric)",
-        generation: Generation.first,
-        maxSpeed: Speed.MilesPerHour(75),
-        power: Power.Hp(420),
-        mass: Mass.Tonne(35),
-        te: TractiveEffort.Kn(103),
-        length: 0.5,
-        gauge: TrackGauge.electric,
-        role: Role.PassengerRailcarHighCapacitySuburban,
-    },
-    {
-        name: "Blaze HST (Diesel)",
-        generation: Generation.first,
-        maxSpeed: Speed.MilesPerHour(125),
-        power: Power.Hp(5000),
-        mass: Mass.Tonne(140),
-        te: TractiveEffort.Kn(412),
-        length: 1,
-        gauge: TrackGauge.standard,
-        role: Role.HighSpeed,
+        role: Role.Lolz,
+        gameplayMode: GameplayMode.full,
     },
 ];

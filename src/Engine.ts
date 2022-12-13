@@ -5,6 +5,7 @@ import { TractiveEffort } from './TractiveEffort.js';
 import { TrackGauge } from './TrackGauge.js';
 import { Role } from './Role.js';
 import { Generation } from './Generation.js';
+import { GameplayMode } from './GameplayMode.js';
 
 export interface Engine {
     name: string;
@@ -16,4 +17,5 @@ export interface Engine {
     gauge: TrackGauge;
     role: Role;
     generation: Generation;
+    gameplayMode: GameplayMode;
 }

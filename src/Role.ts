@@ -17,6 +17,7 @@ export enum Role {
     SuperHeavyFreight = 'Super Heavy Freight',
     SuperHeavyFreightJoker = 'Super Heavy Freight Joker',
     UltraHeavyFreight = 'Ultra Heavy Freight',
+    UltraHeavyFreightJoker = 'Ultra Heavy Freight Joker',
     MailRailcar = 'Mail Railcar',
     PassengerRailcarHighCapacitySuburban = 'Passenger Railcar High Capacity Suburban',
     HighSpeed = 'High Speed',

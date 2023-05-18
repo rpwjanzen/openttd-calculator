@@ -58,6 +58,7 @@ function getEngines() {
                         Role.SuperHeavyFreight,
                         Role.SuperHeavyFreightJoker,
                         Role.UltraHeavyFreight,
+                        Role.UltraHeavyFreightJoker
                     );
                     break;
                 case 'General Purpose / Express':

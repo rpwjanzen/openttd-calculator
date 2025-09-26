@@ -1,11 +1,14 @@
 body {
-    /* font-size: x-large; */
     font-family: -apple-system, BlinkMacSystemFont, system-ui, ui-sans-serif, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 form {
     display: grid;
     grid-template-columns: auto 1fr;
+}
+
+summary {
+    background-color: #eeeeee;
 }
 
 .two-col {
@@ -20,17 +23,7 @@ form {
     flex-grow: 1;
 }
 
-/* select {
-    font-size: x-large;
-}
-
-input {
-    font-size: x-large;
-    width: 100%;
-} */
-
 svg {
-    /* font-size: x-large; */
     min-height: 300px;
 }
 
@@ -39,14 +32,4 @@ ul {
 }
 .hidden {
     display: none;
-}
-
-dl dt {
-    /* float: left; */
-    /* width: 200px; */
-    /* text-align: right; */
-}
-  
-dt dd {
-    /* margin-left: 215px; */
 }

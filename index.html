@@ -2,7 +2,7 @@
 <html lang="en-CA">
 <head>
     <meta charset="utf-8">
-    <title>Iron Horse 3.0.0 Train Speed Calculator</title>
+    <title>Iron Horse 3.37.0 Train Speed Calculator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="lib/chartist.css">
     <link rel="stylesheet" href="lib/chartist-plugin-legend.css">
@@ -11,8 +11,8 @@
 
 <body>
     <header>
-        <h1>Iron Horse 3.0.0 Train Speed Calculator</h1>
-    </header>
+        <h1>Iron Horse 3.37.0 Train Speed Calculator</h1>
+    </header>    
     <form>
         <label for="gameplayMode">Gameplay Mode</label>
         <select id="gameplayMode">
@@ -149,15 +149,37 @@
         If you plan to have engines located within a train, choose a single engine and the longest number of cars
         between engines for length.
     </aside>
+
     <footer>
-        <h3>Guidelines</h3>
+        <h2>Guidelines</h2>
         <ul>
             <li>Power determines acceleration.</li>
             <li>Tractive Effort determines if train can haul cargo at all.</li>
-            <li><a href="https://grf.farm/iron-horse/3.0.0/html/tech_tree_table_red.html">Iron Horse 3.0.0 Tech
+            <li><a href="https://grf.farm/iron-horse/3.37.0/html/tech_tree_table_red.html">Iron Horse 3.37.0 Tech
                     Tree</a></li>
             <li>Air drag in tunnels is ignored.</li>
+            <li><cite><a href="https://www.tt-forums.net/viewtopic.php?p=1229334#p1229334">Transport Typcoon Forums post</a></cite></li>
         </ul>
+        <p>
+            <p>Approx HP requirements per tile of freight train length</p>
+            <ul>
+                <li>Gen 1: 200-300HP per tile</li>
+                <li>Gen 2: 200-300HP per tile</li>
+                <li>Gen 3: 300-400HP per tile</li>
+                <li>Gen 4: 450-550HP per tile</li>
+                <li>Gen 5-6: 600-700HP per tile</li>
+            </ul>
+
+            <p>Approx freight train length ↔ engine</p>
+            <ul>
+                <li>2-3 tiles ↔ light</li>
+                <li>3-5 tiles ↔ general purpose</li>
+                <li>5-7 tiles ↔ heavy</li>
+                <li>6-8 tiles ↔ super heavy</li>
+                <li>8+ tiles ↔ ultra heavy</li>
+            </ul>
+        </p>
+        <time datetime="2025-09-25">2025-09-25</time>
     </footer>
     <script src="lib/chartist.js"></script>
     <script src="lib/chartist-plugin-legend.js"></script>

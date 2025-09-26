@@ -1,5 +1,7 @@
 export enum Role {
     Express = 'Express',
+    LightGeneralPurposeExpress = 'Light General Purpose / Express',
+    LightGeneralPurposeExpressJoker = 'Light General Purpose / Express (Joker)',
     GeneralPurposeExpress = 'General Purpose / Express',
     GeneralPurposeExpressJoker = 'General Purpose / Express Joker',
     HeavyGeneralPurposeExpress = 'Heavy General Purpose / Express',

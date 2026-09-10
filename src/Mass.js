@@ -1,37 +1,38 @@
 export class Mass {
     // short ton
-    private constructor(private _tons: number) {
+    constructor(_tons) {
+        this._tons = _tons;
     }
 
-    public static Ton(ton: number) {
+    static Ton(ton) {
         return new Mass(ton);
     }
-
-    public static Tonne(tonne: number) {
+    
+    static Tonne(tonne) {
         return new Mass(tonne * 1.10231131);
     }
-
-    public static Kg(kg: number) {
+    
+    static Kg(kg) {
         return new Mass(kg / 907.18474);
     }
-
-    public toTon() {
+    
+    toTon() {
         return this._tons;
     }
-
-    public toTonne() {
+    
+    toTonne() {
         return this._tons / 1.10231131;
     }
-
-    public toKg() {
+    
+    toKg() {
         return this._tons * 907.18474;
     }
-
-    public mul(n: number) {
+    
+    mul(n) {
         return new Mass(this._tons * n);
     }
-
-    public add(o: Mass) {
+    
+    add(o) {
         return new Mass(this._tons + o._tons);
     }
 }

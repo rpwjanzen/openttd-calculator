@@ -2,31 +2,25 @@
 /// <reference path = "../typings/chartist.plugin.legend.d.ts" />
 import { Mass } from './Mass.js';
 import { Speed } from './Speed.js';
-import { SpeedUnits } from './SpeedUnits.js';
 import { Power } from './Power.js';
 import { TractiveEffort } from './TractiveEffort.js';
 import { TrackGauge } from './TrackGauge.js';
 import { Role } from './Role.js';
 import { allEngines } from './Engines.js';
-import { Engine } from './Engine.js';
-import { Generation } from './Generation.js';
-import { GameplayMode } from './GameplayMode.js';
 
-function convertToDisplayUnits(speedUnits: SpeedUnits, speedsByEngineByDay: Speed[][]): number[][] {
-    const results: number[][] = [[]];
 
+function convertToDisplayUnits(speedUnits, speedsByEngineByDay) {
+    const results = [[]];
     for (let i = 0; i < speedsByEngineByDay.length; i++) {
         const arr = speedsByEngineByDay[i];
-        const rs: number[] = [];
+        const rs = [];
         for (let j = 0; j < arr.length; j++) {
             rs[j] = arr[j].toSpeedUnit(speedUnits);
         }
         results[i] = rs;
     }
-
     return results;
 }
-
 
 function getEngines() {
     const trackGauges = getTrackGauges();
@@ -45,7 +39,7 @@ function getEngines() {
             engines = allEngines;
             break;
         default:
-            let matchingRoles: Role[] = [];
+            let matchingRoles = [];
             switch (role) {
                 case 'Freight':
                     matchingRoles.push(
@@ -111,7 +105,7 @@ function getEngines() {
     return engines;
 }
 
-function createLabel(maxActualSpeed: Speed, engine: Engine, trainMass: Mass): string {
+function createLabel(maxActualSpeed, engine, trainMass) {
     const speedUnits = getSpeedUnits();
     let actualMaxSpeedText = maxActualSpeed.toText(speedUnits);
     let maxSpeedText = engine.maxSpeed.toText(speedUnits);
@@ -135,7 +129,7 @@ function createLabel(maxActualSpeed: Speed, engine: Engine, trainMass: Mass): st
     }
 }
 
-function createLabels(engines: Engine[], speedsByEngineByDay: Array<Speed[]>, trainMasses: Mass[]): string[] {
+function createLabels(engines, speedsByEngineByDay, trainMasses) {
     const engineLabels = [];
     for (let i = 0; i < engines.length; i++) {
         const engine = engines[i];
@@ -147,14 +141,7 @@ function createLabels(engines: Engine[], speedsByEngineByDay: Array<Speed[]>, tr
     return engineLabels;
 }
 
-function calculateEquilibriumSpeeds(engines: Engine[]): {
-    engine: Engine,
-    speed: Speed,
-    mass: Mass,
-    isSlow: boolean,
-    isUnderTe: boolean,
-    isUnderpowered: boolean,
-}[] {
+function calculateEquilibriumSpeeds(engines) {
     const engineCount = getEngineCount();
     const trainLength = getTrainLength();
     const carLength = getCarLength();
@@ -204,10 +191,12 @@ function calculateEquilibriumSpeeds(engines: Engine[]): {
     return equilibirumSpeeds;
 }
 
-function displayEquilibriumSpeeds(equilibirumSpeeds: { engine: Engine, isSlow: boolean, isUnderTe: boolean, isUnderpowered: boolean, speed: Speed }[]) {
+// { engine: Engine, isSlow: boolean, isUnderTe: boolean, isUnderpowered: boolean, speed: Speed }[]
+function displayEquilibriumSpeeds(equilibirumSpeeds) {
     const speedUnits = getSpeedUnits();
 
-    const table = document.querySelector('#engine-speeds-table') as HTMLTableElement;
+    // HTMLTableElement
+    const table = document.querySelector('#engine-speeds-table');
     // first row is header row; keep it
     while (table.rows.length > 1) {
         table.deleteRow(-1);
@@ -236,7 +225,7 @@ function displayEquilibriumSpeeds(equilibirumSpeeds: { engine: Engine, isSlow: b
 
 let requestId = 0;
 function recalculateChartDataRequested() {
-    const onTimeout: TimerHandler = (currentRequestId: number) => {
+    const onTimeout = (currentRequestId) => {
         if (requestId !== currentRequestId) {
             return;
         }
@@ -248,19 +237,20 @@ function recalculateChartDataRequested() {
     window.setTimeout(onTimeout, 500, requestId);
 }
 
-let lineChart: Chartist.Line;
-let legend: Chartist.Plugin;
+let lineChart = null; //: Chartist.Line;
+let legend = null; //: Chartist.Plugin;
 
 function recalculateChartData() {
     const engines = getEngines();
     if (engines.length === 0) {
-        document.querySelector<HTMLDivElement>('#all-trains-filtered')!.style.display = "block";
-        document.querySelector<HTMLDivElement>('#chart')!.style.display = "none";
+        document.querySelector('#all-trains-filtered').style.display = "block";
+        document.querySelector('#chart').style.display = "none";
         return;
     } else {
-        document.querySelector<HTMLDivElement>('#all-trains-filtered')!.style.display = "none";
-        document.querySelector<HTMLDivElement>('#chart')!.style.display = "block";
+        document.querySelector('#all-trains-filtered').style.display = "none";
+        document.querySelector('#chart').style.display = "block";
     }
+
     const equilibriumSpeeds = calculateEquilibriumSpeeds(engines);
     // equilibriumSpeeds.length = Math.min(15, equilibriumSpeeds.length);
     engines.length = 0;
@@ -353,7 +343,7 @@ function recalculateChartData() {
     }
 }
 
-function calculateNextSpeed(currentSpeed: Speed, totalTrainMass: Mass, carCount: number, dragCoefficient: number, totalEnginePower: Power, maxSpeed: Speed): Speed {
+function calculateNextSpeed(currentSpeed, totalTrainMass, carCount, dragCoefficient, totalEnginePower, maxSpeed) {
     // approx 120
     const a = 120;
 
@@ -388,7 +378,7 @@ function calculateNextSpeed(currentSpeed: Speed, totalTrainMass: Mass, carCount:
 /**
  * from https://wiki.openttd.org/en/Manual/Game%20Mechanics/#trains , OpenTTD 1.6.1
  */
-function calculateNextSpeed2(currentSpeed: Speed, totalTrainMass: Mass, trainParts: number, dragCoefficient: number, totalEnginePower: Power, maxSpeed: Speed, maxTe: TractiveEffort): Speed {
+function calculateNextSpeed2(currentSpeed, totalTrainMass, trainParts, dragCoefficient, totalEnginePower, maxSpeed, maxTe) {
     const maxTeInKn = maxTe.toKn();
     const maxPowerInHp = totalEnginePower.toHp();
     const massInTonnes = totalTrainMass.toTonne();
@@ -418,7 +408,7 @@ function calculateNextSpeed2(currentSpeed: Speed, totalTrainMass: Mass, trainPar
  * @param massOfPartsOnDeclineInT
  * @param slopeSteepness 1-10, default 3
  */
-function getSlopeResistanceFromSourceCode(massOfPartsOnInclineInT: number, massOfPartsOnDeclineInT: number, slopeSteepness: number): number {
+function getSlopeResistanceFromSourceCode(massOfPartsOnInclineInT, massOfPartsOnDeclineInT, slopeSteepness) {
     return massOfPartsOnInclineInT * slopeSteepness * 100 - massOfPartsOnDeclineInT * slopeSteepness * 100;
 }
 
@@ -434,7 +424,7 @@ function getSlopeResistanceFromSourceCode(massOfPartsOnInclineInT: number, massO
  * @param {boolean} isInTunnel
  * @returns {number} in 256th of a km/hish per half-tick
  */
-function getAccelerationFromSourceCode(currentSpeed: Speed, trainMass: Mass, trainPower: Power, trainMaxTe: TractiveEffort, slopeResistanceInN: number, maxSpeed: Speed, isMaglev: boolean, isInTunnel: boolean): number {
+function getAccelerationFromSourceCode(currentSpeed, trainMass, trainPower, trainMaxTe, slopeResistanceInN, maxSpeed, isMaglev, isInTunnel) {
     // OpenTTD v1.11.2
     // ground_vehicle.cpp::GetAcceleration()
     const speed = currentSpeed.toKmPerHour();
@@ -496,7 +486,7 @@ function getAccelerationFromSourceCode(currentSpeed: Speed, trainMass: Mass, tra
     }
 }
 
-function calculateNextSpeedFromSourceCode(currentSpeed: Speed, trainMass: Mass, trainPower: Power, trainMaxTe: TractiveEffort, maxSpeed: Speed, subspeed: number): [Speed, number] {
+function calculateNextSpeedFromSourceCode(currentSpeed, trainMass, trainPower, trainMaxTe, maxSpeed, subspeed) {
     const massOfPartsOnInclineInT = 0;
     const massOfPartsOnDeclineInT = 0;
     const slopeSteepness = 3;
@@ -526,7 +516,7 @@ function calculateNextSpeedFromSourceCode(currentSpeed: Speed, trainMass: Mass, 
     return [currentSpeed, subspeed];
 }
 
-function calculateEquilibriumSpeed(totalTrainMass: Mass, trainPartCount: number, totalEnginePower: Power, maxSpeed: Speed, totalEngineTe: TractiveEffort, isInTunnel: boolean): Speed {
+function calculateEquilibriumSpeed(totalTrainMass, trainPartCount, totalEnginePower, maxSpeed, totalEngineTe, isInTunnel) {
     const maxPowerInHp = totalEnginePower.toHp();
     const maxSpeedInKmH = maxSpeed.toKmPerHour();
     // NewGRF-specific; using default calculation here
@@ -568,34 +558,30 @@ function calculateEquilibriumSpeed(totalTrainMass: Mass, trainPartCount: number,
     return Speed.KmPerHour(equilibriumSpeed);
 }
 
-function checkNull<T>(t: T | null): t is T {
-    return t !== null;
+function getSpeedUnits() {
+    return document.querySelector('#speedUnits').value;
 }
-
-function getSpeedUnits(): SpeedUnits {
-    return document.querySelector<HTMLSelectElement>('#speedUnits')!.value as SpeedUnits;
+function getTrainLength() {
+    return parseFloat(document.querySelector('#trainLength').value);
 }
-function getTrainLength(): number {
-    return parseFloat(document.querySelector<HTMLSelectElement>('#trainLength')!.value);
+function getEngineCount() {
+    return parseInt(document.querySelector('#engineCount').value);
 }
-function getEngineCount(): number {
-    return parseInt(document.querySelector<HTMLSelectElement>('#engineCount')!.value);
+function getSi() {
+    return parseInt(document.querySelector('#slope').value);
 }
-function getSi(): number {
-    return parseInt(document.querySelector<HTMLSelectElement>('#slope')!.value);
-}
-function getCarLength(): number {
-    const v = document.querySelector<HTMLSelectElement>('#carLength')!.value;
+function getCarLength() {
+    const v = document.querySelector('#carLength').value;
     return parseFloat(v);
 }
-function getLoadedCarMass(): Mass {
-    return Mass.Tonne(parseInt(document.querySelector<HTMLSelectElement>('#carMass')!.value));
+function getLoadedCarMass() {
+    return Mass.Tonne(parseInt(document.querySelector('#carMass').value));
 }
-function getRole(): Role | string {
-    return document.querySelector<HTMLSelectElement>('#roles')!.value;
+function getRole() {
+    return document.querySelector('#roles').value;
 }
-function getTrackGauges(): TrackGauge[] {
-    const trackGauge = document.querySelector<HTMLSelectElement>('#trackGauge')!.value;
+function getTrackGauges() {
+    const trackGauge = document.querySelector('#trackGauge').value;
     switch (trackGauge) {
         case TrackGauge.narrow:
             return [TrackGauge.narrow];
@@ -608,12 +594,12 @@ function getTrackGauges(): TrackGauge[] {
     }
 }
 
-function getGeneration(): Generation {
-    return document.querySelector<HTMLSelectElement>('#generation')!.value as Generation;
+function getGeneration() {
+    return document.querySelector('#generation').value;
 }
 
-function getGameplayMode(): GameplayMode {
-    return document.querySelector<HTMLSelectElement>('#gameplayMode')!.value as GameplayMode;
+function getGameplayMode() {
+    return document.querySelector('#gameplayMode').value;
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -633,5 +619,5 @@ const elementIds = [
 ];
 
 for (const elementId of elementIds) {
-    document.querySelector(elementId)!.addEventListener('change', () => recalculateChartDataRequested());
+    document.querySelector(elementId).addEventListener('change', () => recalculateChartDataRequested());
 }

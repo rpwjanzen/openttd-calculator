@@ -1,29 +1,27 @@
 import { SpeedUnits } from './SpeedUnits.js';
-
 export class Speed {
-    static Zero = new Speed(0);
-
-    private constructor(private _kmPerHour: number) {
+    constructor(_kmPerHour) {
+        this._kmPerHour = _kmPerHour;
     }
 
-    public static KmPerHour(kmPerHour: number) {
+    static KmPerHour(kmPerHour) {
         return new Speed(kmPerHour);
     }
-
-    public static Value(value: number) {
+    
+    static Value(value) {
         return new Speed(value);
     }
-
-    public static MilesPerHour(milesPerHour: number) {
+    
+    static MilesPerHour(milesPerHour) {
         return new Speed(milesPerHour * 1.6);
     }
-
-    public toKmPerHour() { return this._kmPerHour; }
-    public toMilesPerHour() { return this._kmPerHour / 1.6; }
-    public toTilesPerDay() { return this._kmPerHour / 28; }
-    public toMetersPerSecond() { return this._kmPerHour / 3.6; }
-
-    public toSpeedUnit(speedUnits: SpeedUnits): number {
+    
+    toKmPerHour() { return this._kmPerHour; }
+    toMilesPerHour() { return this._kmPerHour / 1.6; }
+    toTilesPerDay() { return this._kmPerHour / 28; }
+    toMetersPerSecond() { return this._kmPerHour / 3.6; }
+    
+    toSpeedUnit(speedUnits) {
         switch (speedUnits) {
             case SpeedUnits.kmPerHour:
                 return this.toKmPerHour();
@@ -37,8 +35,8 @@ export class Speed {
                 throw new Error();
         }
     }
-
-    public toText(speedUnits: SpeedUnits): string {
+    
+    toText(speedUnits) {
         switch (speedUnits) {
             case SpeedUnits.kmPerHour:
                 return this.toKmPerHour().toFixed(0) + ' km/h';
@@ -52,36 +50,45 @@ export class Speed {
                 throw new Error();
         }
     }
-
-    public valueOf() { return this._kmPerHour; }
-    public greaterThan(a: Speed) {
+    
+    valueOf() { return this._kmPerHour; }
+    
+    greaterThan(a) {
         return this._kmPerHour > a._kmPerHour;
     }
-    public lessThanOrEqualTo(o: Speed) {
+    
+    lessThanOrEqualTo(o) {
         return this._kmPerHour <= o._kmPerHour;
     }
-    public mul(n: number) {
+    
+    mul(n) {
         return new Speed(this._kmPerHour * n);
     }
-    public div(n: number) {
+    
+    div(n) {
         return new Speed(this._kmPerHour / n);
     }
-    public divSpeed(s: Speed) {
+    
+    divSpeed(s) {
         return this._kmPerHour / s._kmPerHour;
     }
-
-    public sub(s: Speed) {
+    
+    sub(s) {
         return new Speed(this._kmPerHour - s._kmPerHour);
     }
-    public add(s: Speed) {
+    
+    add(s) {
         return new Speed(this._kmPerHour + s._kmPerHour);
     }
-
-    public static max(a: Speed, b: Speed) {
+    
+    static max(a, b) {
         return b._kmPerHour > a._kmPerHour ? b : a;
     }
-
-    public static min(a: Speed, b: Speed) {
+    
+    static min(a, b) {
         return b._kmPerHour < a._kmPerHour ? b : a;
     }
 }
+
+Speed.Zero = new Speed(0);
+

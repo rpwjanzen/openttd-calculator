@@ -1,32 +1,34 @@
 export class TractiveEffort {
-    private constructor(private _kN: number) {
+    constructor(_kN) {
+        this._kN = _kN;
     }
 
-    public static LbF(lbf: number) {
+    static LbF(lbf) {
         return new TractiveEffort(lbf / 224.808943);
     }
-
-    public static KgF(kgF: number) {
+    
+    static KgF(kgF) {
         return new TractiveEffort(kgF / 101.971621);
     }
-
-    public static Kn(kN: number) {
+    
+    static Kn(kN) {
         return new TractiveEffort(kN);
     }
-
-    public toKn() {
+    
+    toKn() {
         return this._kN;
     }
-
-    public toLbF() {
+    
+    toLbF() {
         return this._kN * 224.808943;
     }
-
-    public toKgF() {
+    
+    toKgF() {
         return this._kN * 101.971621;
     }
-
-    public mul(n: number) {
+    
+    mul(n) {
         return new TractiveEffort(this._kN * n);
     }
 }
+

@@ -1,4 +1,3 @@
-import { Engine } from './Engine.js';
 import { Mass } from './Mass.js';
 import { Speed } from './Speed.js';
 import { Power } from './Power.js';
@@ -9,7 +8,7 @@ import { Generation } from './Generation.js';
 import { GameplayMode } from './GameplayMode.js';
 
 // length is divided into 1/16 units
-export const allEngines: Engine[] = [
+export const allEngines = [
     {
         name: "4-4-2 Lark (Steam)",
         // units on page use Metric Tonne, not Ton (even though mph and hp are used). wtf
